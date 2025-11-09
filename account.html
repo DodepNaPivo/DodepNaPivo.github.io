@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Инфотелеком</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-wifi"></i>
+                    <span>Инфотелеком</span>
+                </a>
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="services.html" class="nav-link">Услуги</a>
+                    <a href="tariffs.html" class="nav-link">Тарифы</a>
+                    <a href="about.html" class="nav-link">О компании</a>
+                    <a href="contacts.html" class="nav-link">Контакты</a>
+                    <a href="news.html" class="nav-link">Новости</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="account-section">
+        <div class="container">
+            <div class="account-container">
+                <div class="account-header">
+                    <div class="account-info">
+                        <h2 id="accountName">Загрузка...</h2>
+                        <p id="accountEmail"></p>
+                        <p id="accountPhone"></p>
+                    </div>
+                    <button class="btn logout-btn" id="logoutBtn">Выйти</button>
+                </div>
+
+                <div class="account-grid">
+                    <div class="account-card">
+                        <h3><i class="fas fa-list"></i> Мои услуги</h3>
+                        <ul class="services-list" id="servicesList">
+                            <li>У вас пока нет подключенных услуг</li>
+                        </ul>
+                        <a href="tariffs.html" class="btn btn-primary btn-block" style="margin-top: 1rem;">Подключить услугу</a>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-file-alt"></i> Мои заявки</h3>
+                        <div id="myRequestsList" style="margin-top: 1rem;">
+                            <p>Загрузка заявок...</p>
+                        </div>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-file-invoice-dollar"></i> Счета и оплата</h3>
+                        <p><strong>Текущий баланс:</strong> <span id="accountBalance">0 ₽</span></p>
+                        <p><strong>Последний платеж:</strong> <span id="lastPayment">-</span></p>
+                        <p><strong>Следующий платеж:</strong> <span id="nextPayment">-</span></p>
+                        <button class="btn btn-primary btn-block" style="margin-top: 1rem;">Пополнить баланс</button>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-user-cog"></i> Личные данные</h3>
+                        <p><strong>Имя:</strong> <span id="profileName"></span></p>
+                        <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                        <p><strong>Телефон:</strong> <span id="profilePhone"></span></p>
+                        <p><strong>Дата регистрации:</strong> <span id="profileDate"></span></p>
+                        <button class="btn btn-secondary btn-block" style="margin-top: 1rem;">Изменить данные</button>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-headset"></i> Техподдержка</h3>
+                        <p>Если у вас возникли проблемы с услугами, наши специалисты готовы помочь 24/7</p>
+                        <p><strong>Телефон:</strong> <a href="tel:+78001234568">+7 (800) 123-45-68</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:support@infotelecom.ru">support@infotelecom.ru</a></p>
+                        <a href="contacts.html" class="btn btn-secondary btn-block" style="margin-top: 1rem;">Связаться с нами</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-wifi"></i>
+                        <span>Инфотелеком</span>
+                    </a>
+                    <p class="footer-text">Надежный интернет-провайдер с многолетним опытом работы. Качество, скорость и забота о клиентах.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Интернет</a></li>
+                        <li><a href="services.html">Телевидение</a></li>
+                        <li><a href="services.html">Телефония</a></li>
+                        <li><a href="services.html">Видеонаблюдение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Компания</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i> +7 (800) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@infotelecom.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 1</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Инфотелеком. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/requests.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = Storage.getCurrentUser();
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            document.getElementById('accountName').textContent = currentUser.name;
+            document.getElementById('accountEmail').textContent = currentUser.email;
+            document.getElementById('accountPhone').textContent = currentUser.phone;
+            
+            document.getElementById('profileName').textContent = currentUser.name;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profilePhone').textContent = currentUser.phone;
+            
+            const regDate = new Date(currentUser.registeredAt);
+            document.getElementById('profileDate').textContent = regDate.toLocaleDateString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            const servicesList = document.getElementById('servicesList');
+            if (currentUser.services && currentUser.services.length > 0) {
+                servicesList.innerHTML = currentUser.services.map(service => 
+                    `<li>
+                        <span>${service.name}</span>
+                        <span>${service.price} ₽/мес</span>
+                    </li>`
+                ).join('');
+            } else {
+                servicesList.innerHTML = '<li>У вас пока нет подключенных услуг</li>';
+            }
+            
+            const myRequestsList = document.getElementById('myRequestsList');
+            const allRequests = Requests.getAll();
+            const userRequests = allRequests.filter(r => r.userId === currentUser.id);
+            
+            if (userRequests.length > 0) {
+                const statusLabels = {
+                    'pending': 'Ожидает рассмотрения',
+                    'in_progress': 'В обработке',
+                    'completed': 'Завершена',
+                    'cancelled': 'Отменена'
+                };
+                const statusColors = {
+                    'pending': '#ffc107',
+                    'in_progress': '#17a2b8',
+                    'completed': '#28a745',
+                    'cancelled': '#dc3545'
+                };
+                
+                myRequestsList.innerHTML = '<ul class="services-list">' + 
+                    userRequests.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(request => {
+                        const date = new Date(request.createdAt).toLocaleDateString('ru-RU');
+                        return `
+                        <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                            <div>
+                                <strong>${request.tariffName}</strong> - ${request.tariffPrice} ₽/мес<br>
+                                <small style="color: var(--text-light);">Дата: ${date}</small>
+                            </div>
+                            <span style="background: ${statusColors[request.status] || '#666'}; color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.85rem; font-weight: 600;">
+                                ${statusLabels[request.status] || request.status}
+                            </span>
+                        </li>
+                    `;
+                    }).join('') + '</ul>';
+            } else {
+                myRequestsList.innerHTML = '<p style="color: var(--text-light);">У вас пока нет заявок</p>';
+            }
+            
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                Storage.setCurrentUser(null);
+                window.location.href = 'index.html';
+            });
+            
+            updateHeaderForAuth();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Инфотелеком</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-wifi"></i>
+                    <span>Инфотелеком</span>
+                </a>
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="services.html" class="nav-link">Услуги</a>
+                    <a href="tariffs.html" class="nav-link">Тарифы</a>
+                    <a href="about.html" class="nav-link">О компании</a>
+                    <a href="contacts.html" class="nav-link active">Контакты</a>
+                    <a href="news.html" class="nav-link">Новости</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Свяжитесь с нами</h1>
+            <p class="page-subtitle">Мы всегда готовы ответить на ваши вопросы и помочь с подключением</p>
+        </div>
+    </section>
+
+    <section class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contact-form-wrapper">
+                    <h2>Оставьте заявку</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Адрес подключения *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tariff">Интересующий тариф</label>
+                            <select id="tariff" name="tariff">
+                                <option value="">Выберите тариф</option>
+                                <option value="Эконом">Эконом - 390 ₽/мес</option>
+                                <option value="Базовый">Базовый - 590 ₽/мес</option>
+                                <option value="Оптимальный">Оптимальный - 990 ₽/мес</option>
+                                <option value="Максимальный">Максимальный - 1490 ₽/мес</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-wrapper">
+                    <div class="contact-info-card">
+                        <h3><i class="fas fa-phone"></i> Телефоны</h3>
+                        <p><strong>Горячая линия:</strong><br>
+                        <a href="tel:+78001234567">+7 (800) 123-45-67</a></p>
+                        <p><strong>Техподдержка:</strong><br>
+                        <a href="tel:+78001234568">+7 (800) 123-45-68</a></p>
+                        <p><strong>Круглосуточно</strong></p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <h3><i class="fas fa-envelope"></i> Email</h3>
+                        <p><strong>Общие вопросы:</strong><br>
+                        <a href="mailto:info@infotelecom.ru">info@infotelecom.ru</a></p>
+                        <p><strong>Техподдержка:</strong><br>
+                        <a href="mailto:support@infotelecom.ru">support@infotelecom.ru</a></p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Адрес офиса</h3>
+                        <p>	141305, Московская Область
+                            г. Сергиев Посад, ул. Кирпичная
+                            д. 31, помещ. 164</p>
+                        <p><strong>Время работы:</strong><br>
+                        Пн-Пт: 9:00 - 20:00<br>
+                        Сб-Вс: 10:00 - 18:00</p>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <h3><i class="fas fa-comments"></i> Социальные сети</h3>
+                        <div class="social-links-large">
+                            <a href="#" class="social-link-large"><i class="fab fa-vk"></i> ВКонтакте</a>
+                            <a href="#" class="social-link-large"><i class="fab fa-telegram"></i> Telegram</a>
+                            <a href="#" class="social-link-large"><i class="fab fa-instagram"></i> Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-wifi"></i>
+                        <span>Инфотелеком</span>
+                    </a>
+                    <p class="footer-text">Надежный интернет-провайдер с многолетним опытом работы. Качество, скорость и забота о клиентах.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Интернет</a></li>
+                        <li><a href="services.html">Телевидение</a></li>
+                        <li><a href="services.html">Телефония</a></li>
+                        <li><a href="services.html">Видеонаблюдение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Компания</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i> +7 (800) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@infotelecom.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 1</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Инфотелеком. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
+
+
+

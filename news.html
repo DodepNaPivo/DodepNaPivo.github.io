@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Инфотелеком</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-wifi"></i>
+                    <span>Инфотелеком</span>
+                </a>
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="services.html" class="nav-link">Услуги</a>
+                    <a href="tariffs.html" class="nav-link">Тарифы</a>
+                    <a href="about.html" class="nav-link">О компании</a>
+                    <a href="contacts.html" class="nav-link">Контакты</a>
+                    <a href="news.html" class="nav-link active">Новости</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Новости</h1>
+            <p class="page-subtitle">Актуальная информация о нашей компании и услугах</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container">
+            <div class="news-list" id="newsList">
+                <p style="text-align: center; color: var(--text-light);">Загрузка новостей...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-wifi"></i>
+                        <span>Инфотелеком</span>
+                    </a>
+                    <p class="footer-text">Надежный интернет-провайдер с многолетним опытом работы. Качество, скорость и забота о клиентах.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Интернет</a></li>
+                        <li><a href="services.html">Телевидение</a></li>
+                        <li><a href="services.html">Телефония</a></li>
+                        <li><a href="services.html">Видеонаблюдение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Компания</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i> +7 (800) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@infotelecom.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 1</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Инфотелеком. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsList = document.getElementById('newsList');
+            
+            function loadNews() {
+                fetch('http://localhost/api/get_news.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success && data.data.length > 0) {
+                            newsList.innerHTML = data.data.map(news => {
+                                const date = new Date(news.created_at).toLocaleDateString('ru-RU', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                });
+                                const content = news.content.replace(/\n/g, '<br>');
+                                return `
+                                    <article class="news-item">
+                                        <h2 class="news-title">${escapeHtml(news.title)}</h2>
+                                        <div class="news-text">${content}</div>
+                                        <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
+                                            ${date}${news.author_name ? ' | Автор: ' + escapeHtml(news.author_name) : ''}
+                                        </p>
+                                    </article>
+                                `;
+                            }).join('');
+                        } else {
+                            newsList.innerHTML = '<p style="text-align: center; color: var(--text-light);">Новостей пока нет</p>';
+                        }
+                    })
+            }
+            
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            loadNews();
+        });
+    </script>
+</body>
+</html>
+

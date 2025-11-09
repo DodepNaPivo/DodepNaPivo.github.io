@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора - Инфотелеком</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-wifi"></i>
+                    <span>Инфотелеком</span>
+                </a>
+                <nav class="nav" id="nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="services.html" class="nav-link">Услуги</a>
+                    <a href="tariffs.html" class="nav-link">Тарифы</a>
+                    <a href="about.html" class="nav-link">О компании</a>
+                    <a href="contacts.html" class="nav-link">Контакты</a>
+                    <a href="news.html" class="nav-link">Новости</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="account-section">
+        <div class="container">
+            <div class="account-container">
+                <div class="account-header">
+                    <div class="account-info">
+                        <h2 id="adminName">Панель администратора</h2>
+                        <p id="adminEmail"></p>
+                        <p><i class="fas fa-shield-alt"></i> Права администратора</p>
+                    </div>
+                    <button class="btn logout-btn" id="logoutBtn">Выйти</button>
+                </div>
+
+                <div class="account-grid">
+                    <div class="account-card">
+                        <h3><i class="fas fa-clipboard-list"></i> Заявки на подключение</h3>
+                        <p><strong>Всего заявок:</strong> <span id="totalRequests">0</span></p>
+                        <p><strong>Новых заявок:</strong> <span id="pendingRequests">0</span></p>
+                        <p><strong>В обработке:</strong> <span id="inProgressRequests">0</span></p>
+                        <p><strong>Завершено:</strong> <span id="completedRequests">0</span></p>
+                        <div id="requestsList" style="margin-top: 1rem; max-height: 400px; overflow-y: auto;">
+                            <p>Загрузка заявок...</p>
+                        </div>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-users"></i> Управление пользователями</h3>
+                        <p><strong>Всего пользователей:</strong> <span id="totalUsers">0</span></p>
+                        <p><strong>Обычных пользователей:</strong> <span id="regularUsers">0</span></p>
+                        <p><strong>Администраторов:</strong> <span id="adminUsers">0</span></p>
+                        <div id="usersList" style="margin-top: 1rem; max-height: 300px; overflow-y: auto;">
+                            <p>Загрузка списка пользователей...</p>
+                        </div>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-cog"></i> Управление услугами</h3>
+                        <p>Здесь можно управлять услугами и тарифами</p>
+                        <button class="btn btn-primary btn-block" style="margin-top: 1rem;">Управление тарифами</button>
+                        <button class="btn btn-secondary btn-block" style="margin-top: 0.5rem;">Управление услугами</button>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-newspaper"></i> Управление новостями</h3>
+                        <p><strong>Всего новостей:</strong> <span id="totalNews">0</span></p>
+                        <a href="news.html" class="btn btn-primary btn-block" style="margin-top: 1rem;">Просмотр новостей</a>
+                        <button class="btn btn-secondary btn-block" id="showNewsFormBtn" style="margin-top: 0.5rem;">Добавить новость</button>
+                    </div>
+                    
+                    <div class="account-card" id="newsFormCard" style="display: none;">
+                        <h3><i class="fas fa-plus-circle"></i> Создать новость</h3>
+                        <form id="createNewsForm" style="margin-top: 1rem;">
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Заголовок:</label>
+                                <input type="text" id="newsTitle" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 5px; font-size: 1rem;">
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Содержание:</label>
+                                <textarea id="newsContent" required rows="8" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 5px; font-size: 1rem; resize: vertical;"></textarea>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" id="newsPublished" checked>
+                                    <span>Опубликовать сразу</span>
+                                </label>
+                            </div>
+                            <div id="newsError" style="color: #dc3545; margin-bottom: 1rem; display: none;"></div>
+                            <div id="newsSuccess" style="color: #28a745; margin-bottom: 1rem; display: none;"></div>
+                            <button type="submit" class="btn btn-primary btn-block">Создать новость</button>
+                            <button type="button" class="btn btn-secondary btn-block" id="cancelNewsFormBtn" style="margin-top: 0.5rem;">Отмена</button>
+                        </form>
+                    </div>
+
+                    <div class="account-card">
+                        <h3><i class="fas fa-chart-line"></i> Статистика</h3>
+                        <p><strong>Активных подключений:</strong> <span id="activeConnections">0</span></p>
+                        <p><strong>Новых регистраций за месяц:</strong> <span id="newRegistrations">0</span></p>
+                        <p><strong>Средний чек:</strong> <span id="averageBill">0 ₽</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-wifi"></i>
+                        <span>Инфотелеком</span>
+                    </a>
+                    <p class="footer-text">Надежный интернет-провайдер с многолетним опытом работы. Качество, скорость и забота о клиентах.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Услуги</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Интернет</a></li>
+                        <li><a href="services.html">Телевидение</a></li>
+                        <li><a href="services.html">Телефония</a></li>
+                        <li><a href="services.html">Видеонаблюдение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Компания</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Контакты</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i> +7 (800) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@infotelecom.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 1</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Инфотелеком. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/requests.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = Storage.getCurrentUser();
+            
+            if (!currentUser || currentUser.role !== 'admin') {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            document.getElementById('adminName').textContent = currentUser.name + ' (Администратор)';
+            document.getElementById('adminEmail').textContent = currentUser.email;
+            
+            const requests = Requests.getAll();
+            const totalRequests = requests.length;
+            const pendingRequests = requests.filter(r => r.status === 'pending').length;
+            const inProgressRequests = requests.filter(r => r.status === 'in_progress').length;
+            const completedRequests = requests.filter(r => r.status === 'completed').length;
+            
+            document.getElementById('totalRequests').textContent = totalRequests;
+            document.getElementById('pendingRequests').textContent = pendingRequests;
+            document.getElementById('inProgressRequests').textContent = inProgressRequests;
+            document.getElementById('completedRequests').textContent = completedRequests;
+            
+            const requestsList = document.getElementById('requestsList');
+            if (requests.length > 0) {
+                const statusColors = {
+                    'pending': '#ffc107',
+                    'in_progress': '#17a2b8',
+                    'completed': '#28a745',
+                    'cancelled': '#dc3545'
+                };
+                const statusLabels = {
+                    'pending': 'Новая',
+                    'in_progress': 'В обработке',
+                    'completed': 'Завершена',
+                    'cancelled': 'Отменена'
+                };
+                
+                requestsList.innerHTML = '<ul style="list-style: none; padding: 0;">' + 
+                    requests.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(request => {
+                        const date = new Date(request.createdAt).toLocaleString('ru-RU');
+                        return `
+                        <li style="padding: 1rem; margin-bottom: 0.75rem; background: white; border-radius: 5px; border-left: 4px solid ${statusColors[request.status] || '#666'}; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                <div>
+                                    <strong>Тариф: ${request.tariffName}</strong> - ${request.tariffPrice} ₽/мес<br>
+                                    <small style="color: var(--text-light);">Клиент: ${request.userName} (${request.userEmail})</small><br>
+                                    <small style="color: var(--text-light);">Телефон: ${request.userPhone}</small><br>
+                                    <small style="color: var(--text-light);">Дата: ${date}</small>
+                                </div>
+                                <span style="background: ${statusColors[request.status] || '#666'}; color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.85rem; font-weight: 600;">
+                                    ${statusLabels[request.status] || request.status}
+                                </span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                ${request.status === 'pending' ? `<button class="btn btn-primary" style="padding: 0.25rem 0.75rem; font-size: 0.85rem;" onclick="updateRequestStatus('${request.id}', 'in_progress')">В обработку</button>` : ''}
+                                ${request.status === 'in_progress' ? `<button class="btn btn-primary" style="padding: 0.25rem 0.75rem; font-size: 0.85rem;" onclick="updateRequestStatus('${request.id}', 'completed')">Завершить</button>` : ''}
+                                ${request.status !== 'cancelled' ? `<button class="btn logout-btn-small" style="padding: 0.25rem 0.75rem; font-size: 0.85rem;" onclick="updateRequestStatus('${request.id}', 'cancelled')">Отменить</button>` : ''}
+                                <button class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.85rem;" onclick="deleteRequest('${request.id}')">Удалить</button>
+                            </div>
+                        </li>
+                    `;
+                    }).join('') + '</ul>';
+            } else {
+                requestsList.innerHTML = '<p style="color: var(--text-light);">Заявок пока нет</p>';
+            }
+            
+            const users = Storage.getUsers();
+            const totalUsers = users.length;
+            const regularUsers = users.filter(u => u.role !== 'admin').length;
+            const adminUsers = users.filter(u => u.role === 'admin').length;
+            
+            document.getElementById('totalUsers').textContent = totalUsers;
+            document.getElementById('regularUsers').textContent = regularUsers;
+            document.getElementById('adminUsers').textContent = adminUsers;
+            
+            const usersList = document.getElementById('usersList');
+            if (users.length > 0) {
+                usersList.innerHTML = '<ul style="list-style: none; padding: 0;">' + 
+                    users.map(user => `
+                        <li style="padding: 0.75rem; margin-bottom: 0.5rem; background: var(--bg-light); border-radius: 5px; border-left: 4px solid ${user.role === 'admin' ? 'var(--primary-color)' : 'var(--success-color)'};">
+                            <strong>${user.name}</strong> (${user.email}) 
+                            <span style="color: ${user.role === 'admin' ? 'var(--primary-color)' : 'var(--text-light)'};">
+                                ${user.role === 'admin' ? 'Админ' : 'Пользователь'}
+                            </span>
+                        </li>
+                    `).join('') + '</ul>';
+            } else {
+                usersList.innerHTML = '<p>Пользователи не найдены</p>';
+            }
+            
+            const activeConnections = users.reduce((sum, user) => sum + (user.services ? user.services.length : 0), 0);
+            const currentMonth = new Date().getMonth();
+            const newRegistrations = users.filter(user => {
+                const regDate = new Date(user.registeredAt);
+                return regDate.getMonth() === currentMonth;
+            }).length;
+            const averageBill = activeConnections > 0 ? Math.round((activeConnections * 990) / users.length) : 0;
+            
+            document.getElementById('activeConnections').textContent = activeConnections;
+            document.getElementById('newRegistrations').textContent = newRegistrations;
+            document.getElementById('averageBill').textContent = averageBill + ' ₽';
+            
+            fetch('http://localhost/api/get_news.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('totalNews').textContent = data.data.length;
+                    }
+                })
+                .catch(error => {
+                });
+            
+            document.getElementById('showNewsFormBtn').addEventListener('click', function() {
+                document.getElementById('newsFormCard').style.display = 'block';
+                document.getElementById('newsFormCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+            
+            document.getElementById('cancelNewsFormBtn').addEventListener('click', function() {
+                document.getElementById('newsFormCard').style.display = 'none';
+                document.getElementById('createNewsForm').reset();
+                document.getElementById('newsError').style.display = 'none';
+                document.getElementById('newsSuccess').style.display = 'none';
+            });
+            
+            document.getElementById('createNewsForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const errorDiv = document.getElementById('newsError');
+                const successDiv = document.getElementById('newsSuccess');
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+                
+                const title = document.getElementById('newsTitle').value.trim();
+                const content = document.getElementById('newsContent').value.trim();
+                const published = document.getElementById('newsPublished').checked;
+                
+                if (!title || !content) {
+                    errorDiv.textContent = 'Заполните все поля';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                
+                const newsData = {
+                    title: title,
+                    content: content,
+                    author_id: parseInt(currentUser.id) || null,
+                    published: published
+                };
+                
+                fetch('http://localhost/api/create_news.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newsData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        successDiv.textContent = 'Новость успешно создана!';
+                        successDiv.style.display = 'block';
+                        document.getElementById('createNewsForm').reset();
+                        
+                        fetch('http://localhost/api/get_news.php')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    document.getElementById('totalNews').textContent = data.data.length;
+                                }
+                            });
+                        
+                        setTimeout(() => {
+                            document.getElementById('newsFormCard').style.display = 'none';
+                            successDiv.style.display = 'none';
+                        }, 2000);
+                    } else {
+                        errorDiv.style.display = 'block';
+                    }
+                })
+            });
+            
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                Storage.setCurrentUser(null);
+                window.location.href = 'index.html';
+            });
+            
+            updateHeaderForAuth();
+        });
+        
+        function updateRequestStatus(requestId, status) {
+            Requests.updateStatus(requestId, status);
+            location.reload();
+        }
+        
+        function deleteRequest(requestId) {
+            if (confirm('Вы уверены, что хотите удалить эту заявку?')) {
+                Requests.delete(requestId);
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
+
